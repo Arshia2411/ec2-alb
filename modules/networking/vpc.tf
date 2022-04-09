@@ -26,6 +26,10 @@ resource "aws_internet_gateway" "ig" {
 resource "aws_eip" "nat_eip" {
   vpc        = true
   depends_on = [aws_internet_gateway.ig]
+  tags = {
+    Name        = "${var.environment}-eip"
+    Environment = "${var.environment}"
+  }
 }
 /* NAT */
 resource "aws_nat_gateway" "nat" {
@@ -111,7 +115,7 @@ resource "aws_security_group" "default" {
       from_port        = 22
       to_port          = 22
       protocol         = "tcp"
-      cidr_blocks      = ["0.0.0.0/0"]
+      cidr_blocks      = var.cidr_block_sg
       ipv6_cidr_blocks = null
       prefix_list_ids  = null
       security_groups  = null
@@ -122,7 +126,7 @@ resource "aws_security_group" "default" {
       from_port        = 80
       to_port          = 80
       protocol         = "tcp"
-      cidr_blocks      = ["0.0.0.0/0"]
+      cidr_blocks      = var.cidr_block_sg
       ipv6_cidr_blocks = null
       prefix_list_ids  = null
       security_groups  = null

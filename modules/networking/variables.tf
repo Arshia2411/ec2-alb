@@ -1,3 +1,4 @@
+#VPC
 variable "environment" {
   description = "The Deployment environment"
   default     = null
@@ -28,6 +29,12 @@ variable "region" {
 variable "availability_zones" {
   type        = list(any)
   description = "The az that the resources will be launched"
+  default     = null
+}
+
+variable "cidr_block_sg" {
+  type        = list(any)
+  description = "The CIDR block for security group access"
   default     = null
 }
 
