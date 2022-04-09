@@ -1,0 +1,13 @@
+# Terragrunt
+.terragrunt-cache/
+*.tfstate
+*.tfstate.*
+
+# Terraform
+**/.terraform.lock.hcl
+.terraform.tfstate.lock.info
+**/.terraform/*
+
+#.DS_Store
+.DS_Store
+**/.DS_Store
